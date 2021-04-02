@@ -21,8 +21,9 @@ def moveImg(filetype,verificationtype):
         os.mkdir(directory+'verified')
         os.mkdir(directory+'corrupt')
         print('Folders created - verified & corrupt')
+        print('Verifying files now.......')
     except:
-        pass
+        return 'Couldnt create folder. Permission?'
         
     for filename in listdir(directory):
         if filename.endswith('.'+filetype):
