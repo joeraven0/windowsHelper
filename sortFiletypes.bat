@@ -1,3 +1,13 @@
+mkdir jpg
+mkdir mp3
+mkdir videos
+mkdir txt
+mkdir doc
+mkdir pdf
+mkdir gif
+mkdir xml
+mkdir others
+set /P id=Enter id: 
 move *.jpg ./jpg
 move *.png ./jpg
 move *.bmp ./jpg
