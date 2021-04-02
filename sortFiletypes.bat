@@ -30,3 +30,4 @@ move *.rtf ./doc
 move *.gif ./gif
 move *.xml ./xml
 move *.* ./others
+set /P id=Everything sorted. Press to quit: 
