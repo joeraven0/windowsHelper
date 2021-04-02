@@ -7,7 +7,7 @@ mkdir pdf
 mkdir gif
 mkdir xml
 mkdir others
-set /P id=Enter id: 
+set /P id=Press to begin sort: 
 move *.jpg ./jpg
 move *.png ./jpg
 move *.bmp ./jpg
