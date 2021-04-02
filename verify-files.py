@@ -1,3 +1,4 @@
+#Verify that img-files are valid images and not corrupt. If corrupt, put in corrupt folder, if verified put in verified folder
 from os import listdir
 from PIL import Image
 import os
