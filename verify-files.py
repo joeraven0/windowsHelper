@@ -9,20 +9,19 @@ import time
 
 directory = './'
 filetype = 'jpg'
-enterFiletype = input('Enter filetype default jpg: ')
 
-if len(enterFiletype)<2:
-    filetype='jpg'
-else:
-    filetype=enterFiletype
+
+
 
 def archiveSmallImg(filetype):
     try:
         os.mkdir(directory+'tinyfiles')
         print('Folder created - tinyfiles')
-        print('Moving small files now......')
+        
     except:
-        print('Couldnt create folder tinyfiles')
+        #print('Couldnt create folder tinyfiles')
+        pass
+    print('Moving small files now......')
     
     for filename in listdir(directory):
         if filename.endswith('.'+filetype):
@@ -36,10 +35,11 @@ def moveImg(filetype,verificationtype):
         os.mkdir(directory+'verified')
         os.mkdir(directory+'corrupt')
         print('Folders created - verified & corrupt')
-        print('Verifying files now.......')
-    except:
-        print('Couldnt create folder. Permission?')
         
+    except:
+        pass
+        #print('Couldnt create folder. Permission?')
+    print('Verifying files now.......')   
     for filename in listdir(directory):
         if filename.endswith('.'+filetype):
             #print("Working on file: "+filename)
@@ -60,9 +60,30 @@ def moveImg(filetype,verificationtype):
               #os.rename(filename, directory+"corrupt/"+filename)
             except:
                 pass
-print(archiveSmallImg(filetype))
-moveImg(filetype.upper(),"verified")
-moveImg(filetype.lower(),"verified")
-moveImg(filetype.upper(),"corrupt")
-moveImg(filetype.lower(),"corrupt")
-input("Finished")
+run = True                
+while run:
+    selection = input('1. Move small files\n2. Verify image files\n3. Stop\n:')
+    
+    if selection=='1':
+        enterFiletype = input('Enter filetype default jpg: ')
+        if len(enterFiletype)<2:
+            filetype='jpg'
+        else:
+            filetype=enterFiletype
+        print(archiveSmallImg(filetype.upper()))
+        print(archiveSmallImg(filetype.lower()))
+        input("Finished moved small files")
+    if selection=='2':
+        enterFiletype = input('Enter filetype default jpg: ')
+        if len(enterFiletype)<2:
+            filetype='jpg'
+        else:
+            filetype=enterFiletype
+        moveImg(filetype.upper(),"verified")
+        moveImg(filetype.lower(),"verified")
+        moveImg(filetype.upper(),"corrupt")
+        moveImg(filetype.lower(),"corrupt")
+        input("Finished verifying files")
+    if selection=='3':
+        run=False
+    
