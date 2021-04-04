@@ -14,6 +14,8 @@ filetype = 'jpg'
 
 
 def archiveSmallImg(filetype):
+    iterations = 0
+    sequences = 0
     try:
         os.mkdir(directory+'tinyfiles')
         print('Folder created - tinyfiles')
@@ -24,6 +26,11 @@ def archiveSmallImg(filetype):
     print('Moving small files now......')
     
     for filename in listdir(directory):
+        iterations = iterations + 1        
+        if iterations>= 1000:
+            sequences = sequences + 1000
+            print("Iterated through "+str(sequences) + " files")
+            iterations = 0
         if filename.endswith('.'+filetype):
             try:
                 if os.path.getsize(filename) < 50*1024:
@@ -31,6 +38,8 @@ def archiveSmallImg(filetype):
             except:
                 pass
 def moveImg(filetype,verificationtype):
+    iterations = 0
+    sequences = 0
     try:
         os.mkdir(directory+'verified')
         os.mkdir(directory+'corrupt')
@@ -41,6 +50,11 @@ def moveImg(filetype,verificationtype):
         #print('Couldnt create folder. Permission?')
     print('Verifying files now.......')   
     for filename in listdir(directory):
+        iterations = iterations + 1        
+        if iterations>= 1000:
+            sequences = sequences + 1000
+            print("Iterated through "+str(sequences) + " files")
+            iterations = 0
         if filename.endswith('.'+filetype):
             #print("Working on file: "+filename)
             
