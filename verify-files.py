@@ -20,6 +20,7 @@ def archiveSmallImg(filetype):
     try:
         os.mkdir(directory+'tinyfiles')
         print('Folder created - tinyfiles')
+        print('Moving small files now......')
     except:
         print('Couldnt create folder tinyfiles')
     
