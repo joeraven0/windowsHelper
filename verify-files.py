@@ -16,6 +16,20 @@ if len(enterFiletype)<2:
 else:
     filetype=enterFiletype
 
+def archiveSmallImg(filetype):
+    try:
+        os.mkdir(directory+'tinyfiles')
+        print('Folder created - tinyfiles')
+    except:
+        print('Couldnt create folder tinyfiles')
+    
+    for filename in listdir(directory):
+        if filename.endswith('.'+filetype):
+            try:
+                if os.path.getsize(filename) < 50*1024:
+                    os.rename(os.path.join(directory,filename),os.path.join(directory,"tinyfiles/"+filename))
+            except:
+                pass
 def moveImg(filetype,verificationtype):
     try:
         os.mkdir(directory+'verified')
@@ -23,11 +37,12 @@ def moveImg(filetype,verificationtype):
         print('Folders created - verified & corrupt')
         print('Verifying files now.......')
     except:
-        return 'Couldnt create folder. Permission?'
+        print('Couldnt create folder. Permission?')
         
     for filename in listdir(directory):
         if filename.endswith('.'+filetype):
             #print("Working on file: "+filename)
+            
             try:
               if verificationtype=="verified":
                 img = Image.open(directory+filename) # open the image file
@@ -44,6 +59,7 @@ def moveImg(filetype,verificationtype):
               #os.rename(filename, directory+"corrupt/"+filename)
             except:
                 pass
+print(archiveSmallImg(filetype))
 moveImg(filetype.upper(),"verified")
 moveImg(filetype.lower(),"verified")
 moveImg(filetype.upper(),"corrupt")
