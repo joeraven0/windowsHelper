@@ -37,7 +37,7 @@ def archiveSmallImg(filetype):
                     os.rename(os.path.join(directory,filename),os.path.join(directory,"tinyfiles/"+filename))
             except:
                 pass
-def moveImg(filetype,verificationtype):
+def moveImg(filetype):
     iterations = 0
     sequences = 0
     try:
@@ -59,16 +59,18 @@ def moveImg(filetype,verificationtype):
             #print("Working on file: "+filename)
             
             try:
-              if verificationtype=="verified":
                 img = Image.open(directory+filename) # open the image file
                 img.verify() # verify that it is, in fact an image                
               
-              os.rename(os.path.join(directory,filename),os.path.join(directory,verificationtype+"/"+filename))
+                os.rename(os.path.join(directory,filename),os.path.join(directory,"verified"+"/"+filename))
               
               #print("moved Image: "+filename)
               
             except (IOError, SyntaxError) as e:
-                pass
+                try:
+                    os.rename(os.path.join(directory,filename),os.path.join(directory,"corrupt"+"/"+filename))
+                except:
+                    pass
               #print("error file:"+filename)
               #print('Bad file:', filename) # print out the names of corrupt files
               #os.rename(filename, directory+"corrupt/"+filename)
@@ -93,10 +95,10 @@ while run:
             filetype='jpg'
         else:
             filetype=enterFiletype
-        moveImg(filetype.upper(),"verified")
-        moveImg(filetype.lower(),"verified")
-        moveImg(filetype.upper(),"corrupt")
-        moveImg(filetype.lower(),"corrupt")
+        moveImg(filetype.lower())
+        moveImg(filetype.upper())
+        
+        
         input("Finished verifying files")
     if selection=='3':
         run=False
