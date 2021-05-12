@@ -1,6 +1,7 @@
 #Verify that img-files are valid images and not corrupt. If corrupt, put in corrupt folder, if verified put in verified folder
 #Instructions:
-#Put this file in the folder that should be sorted. Errors often related to too small files, remove or move these.
+#Put this file in the folder that should be sorted. Errors often related to too small files. This script can sort these small files to a separate folder.
+#Move small files by selecting 1. Move small files before running 2. Verify image files.
 from os import listdir
 from PIL import Image
 import os
